@@ -51,7 +51,15 @@ export default function Home() {
             {/* Search Section End  */}
 
             {/* File Section Start  */}
-            <section>{/* TODO */}</section>
+            <section>
+              <div
+                className="py-5 mt-4"
+                style={{
+                  backgroundColor: "#232323",
+                  padding: 10,
+                }}
+              ></div>
+            </section>
 
             {/* File Section End  */}
           </div>
