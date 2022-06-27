@@ -2,8 +2,12 @@ import React from "react";
 import Footer from "../Sheard/Footer";
 import LoginTopHeader from "../Sheard/LoginTopHeader";
 import Menu from "../Sheard/Menu";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+
+  const login = useNavigate();
+
   return (
     <div>
 
@@ -53,6 +57,7 @@ const Login = () => {
                         style={{ float: "left", color: "#00ADEE" }}
                         type="button"
                         className="btn btn-primary bg-white mt-2 border-0"
+                        onClick={() => login("/home")}
                       >
                         Sign In
                       </button>
@@ -74,7 +79,6 @@ const Login = () => {
                   <div>
                     If you do not already have a User ID and password, please{" "}
                     <a href="#" className="text-white">
-                      {" "}
                       register now
                     </a>
                     .

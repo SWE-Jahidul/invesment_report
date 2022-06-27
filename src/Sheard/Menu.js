@@ -33,14 +33,16 @@ const Menu = () => {
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0 ">
             <li class="nav-item active">
               <a class="nav-link">
-              <Link className="link" to="home">
-                Home
+                <Link className="link" to="/home">
+                  Home
                 </Link>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
-                Search
+              <a class="nav-link">
+                <Link className="link" to="/search">
+                  Search
+                </Link>
               </a>
             </li>
             <li class="nav-item">
@@ -50,7 +52,7 @@ const Menu = () => {
             </li>
             <li class="nav-item">
               <a class="nav-link">
-                <Link className="link" to="help">
+                <Link className="link" to="/help">
                   Help{" "}
                 </Link>
               </a>

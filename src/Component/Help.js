@@ -30,6 +30,7 @@ const Help = () => {
                     aria-controls="flush-collapseOne"
                     style={{
                       color: "#61dafb",
+                      fontSize:25
                     }}
                   >
                     Personal Alerts
@@ -57,6 +58,8 @@ const Help = () => {
                     aria-controls="flush-collapseTwo"
                     style={{
                       color: "#61dafb",
+                      fontSize:25
+
                     }}
                   >
                     Default & Personal Links
@@ -84,6 +87,8 @@ const Help = () => {
                     aria-controls="flush-collapseThree"
                     style={{
                       color: "#61dafb",
+                      fontSize:25
+
                     }}
                   >
                     User Profile
@@ -111,6 +116,8 @@ const Help = () => {
                     aria-controls="flush-collapseFour"
                     style={{
                       color: "#61dafb",
+                      fontSize:25
+
                     }}
                   >
                     Chnage Password
@@ -155,6 +162,8 @@ const Help = () => {
                     aria-controls="flush-helpOne"
                     style={{
                       color: "#61dafb",
+                      fontSize:25
+
                     }}
                   >
                     Contact Us
@@ -182,6 +191,8 @@ const Help = () => {
                     aria-controls="flush-helpCollapseTwo"
                     style={{
                       color: "#61dafb",
+                      fontSize:25
+
                     }}
                   >
                     FAQ's
@@ -209,6 +220,8 @@ const Help = () => {
                     aria-controls="flush-heading-help-Three"
                     style={{
                       color: "#61dafb",
+                      fontSize:25
+
                     }}
                   >
                     File Naming Convension
