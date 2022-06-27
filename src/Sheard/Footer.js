@@ -7,9 +7,11 @@ export default function Footer() {
       className="mt-3"
       style={{
         backgroundColor: "#232323",
+        width: "100% ",
+        bottom:'0px !important',
       }}
     >
-      <div className="container pt-3">
+      <div className="container py-5">
         <div className="row d-flex align-items-center ">
           <div className="col-lg-4 col-md-4 col-12 col-sm-12">
             <div>
@@ -31,9 +33,7 @@ export default function Footer() {
           </div>
 
           <div className="col-lg-8 col-md-8 col-12 col-sm-12">
-            <div className="text-white text-start ">
-               Legal 
-            </div>
+            <div className="text-white text-start ">Legal</div>
 
             <div
               class="d-flex flex-row"
@@ -42,17 +42,29 @@ export default function Footer() {
               }}
             >
               <div class="p-2 ">
-                <a   className="text-decoration-none legal_btn" href="#"> Terms of Use </a>
-              </div>
-              <div  class="p-2 ">
-                <a className="text-decoration-none legal_btn" href="#"> Privacy Notice </a>
+                <a className="text-decoration-none legal_btn" href="#">
+                  {" "}
+                  Terms of Use{" "}
+                </a>
               </div>
               <div class="p-2 ">
-                <a  className="text-decoration-none legal_btn" href="#"> Disclaimer </a>
+                <a className="text-decoration-none legal_btn" href="#">
+                  {" "}
+                  Privacy Notice{" "}
+                </a>
+              </div>
+              <div class="p-2 ">
+                <a className="text-decoration-none legal_btn" href="#">
+                  {" "}
+                  Disclaimer{" "}
+                </a>
               </div>
 
               <div class="p-2 ">
-                <a   className="text-decoration-none legal_btn" href="#"> Cookie Policy </a>
+                <a className="text-decoration-none legal_btn" href="#">
+                  {" "}
+                  Cookie Policy{" "}
+                </a>
               </div>
             </div>
 

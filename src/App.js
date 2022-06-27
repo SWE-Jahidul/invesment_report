@@ -7,15 +7,13 @@ import Help from "./Component/Help";
 
 function App() {
   return (
-    <div className="App" style={{ backgroundColor: "#333333" }}>
-      <BrowserRouter>
-        <Routes>
-        <Route path="/" element={<Login />} />
-          <Route path="home" element={<Home />} />
-          <Route path="help" element={<Help />} />
-        </Routes>
-      </BrowserRouter>
-    </div>
+    // <div className="App" style={{ backgroundColor: "#333333" }}>
+    <Routes>
+      <Route path="/" element={<Login />} />
+      <Route path="home" element={<Home />} />
+      <Route path="help" element={<Help />} />
+    </Routes>
+    // </div>
   );
 }
 

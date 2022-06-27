@@ -1,39 +1,38 @@
-.navbar
-{
+.navbar {
   background-color: #232323;
 }
 
-.menu-link{
-  color: white ;
-
-}
-.schol-name-color{
-  color: #00ADEE;
+.menu-link {
+  color: white;
 }
 
+.link {
+  color: white;
+  text-decoration: none;
+}
+.schol-name-color {
+  color: #00adee;
+}
 
 .contactme-card {
   background-color: whitesmoke;
   border-radius: 10px;
 }
-.fa-navicon{
- 
+.fa-navicon {
   color: white !important;
 }
 
-
-
-.nav-link{
+.nav-link {
   color: #fff;
   text-transform: uppercase;
   text-decoration: none;
   letter-spacing: 0.15em;
-  
+
   display: inline-block;
   padding: 15px 20px;
   position: relative;
 }
-.nav-link:after {    
+.nav-link:after {
   background: none repeat scroll 0 0 transparent;
   bottom: 0;
   content: "";
@@ -45,7 +44,7 @@
   transition: width 0.3s ease 0s, left 0.3s ease 0s;
   width: 0;
 }
-.nav-link:hover:after { 
-  width: 90%; 
-  left: 0; 
+.nav-link:hover:after {
+  width: 90%;
+  left: 0;
 }
