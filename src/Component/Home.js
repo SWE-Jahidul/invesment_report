@@ -1,9 +1,74 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import Footer from "../Sheard/Footer";
 import Menu from "../Sheard/Menu";
 import TopHeader from "../Sheard/TopHeader";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
+  const loginpage = useNavigate();
+  const [userinfo, setUserInfo] = useState();
+  const [filedata,setFileData] = useState();
+  const [documentname,setDocumentName] = useState();
+
+  const FileData = (e) => {
+    console.log(e.target.files[0]);
+    setFileData(e.target.files[0]);
+  }
+
+  const UploadFileHandler = async(e) => {
+    //let formData = new FormData();
+    // formData.append("file", filename);
+    // console.log(formData);
+    
+
+    e.preventDefault();
+
+    //handle file data from the state before sending
+    const data = new FormData();
+    data.append('featuredImage', filedata);
+    data.append('id',documentname);
+
+    await axios.post("http://localhost:5000/uploadfile",data).then(function(data){
+      console.log(data);
+    })
+
+    // await axios.post("http://localhost:5000/postdocuments",data).then(function(data){
+    //   console.log(data.data.data.ID);
+    // })
+
+    // fetch("http://localhost:5000/multerupload",{
+    //   method: "POST",
+    //   body: data,
+    // })
+    // .then((result)=>{
+    //   console.log("File sent successfully");
+    //   console.log(result);
+    // })
+    // .catch((err)=>{
+    //   console.log(err.message);
+    // })
+     
+  }
+
+  useEffect(() => {
+    const userInfo = JSON.parse(localStorage.getItem("userinfo"));
+    if (!userInfo) {
+      loginpage("/");
+    }
+
+    if (userInfo) {
+      //console.log(userInfo.id, userInfo.name, userInfo.email);
+      setUserInfo({
+        id: userInfo.id,
+        name: userInfo.name,
+        email: userInfo.email,
+      });
+    } else {
+      loginpage("/");
+    }
+  }, []);
+
   return (
     <div>
       <TopHeader></TopHeader>
@@ -58,7 +123,18 @@ export default function Home() {
                   backgroundColor: "#232323",
                   padding: 10,
                 }}
-              ></div>
+              ><h1 style={{color:"white"}}>File Upload</h1>
+
+              <form onSubmit={UploadFileHandler}>
+              <input style={{color:"white"}} type="file" name="featuredImage" onChange={FileData}/>
+              <label style={{color:"white"}}>Document ID </label>
+              <input placeholder="Document id" id="id" onChange={(e)=>setDocumentName(e.target.value)}/>
+              <br />
+              <br />
+              <button type="submit">Submit File</button>
+              </form>
+
+              </div>
             </section>
 
             {/* File Section End  */}

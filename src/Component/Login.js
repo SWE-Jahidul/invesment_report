@@ -1,12 +1,96 @@
-import React from "react";
+import React, {useEffect,useState} from "react";
 import Footer from "../Sheard/Footer";
 import LoginTopHeader from "../Sheard/LoginTopHeader";
 import Menu from "../Sheard/Menu";
 import { useNavigate } from "react-router-dom";
+import { Base64 } from "js-base64";
+import axios from "axios";
 
 const Login = () => {
+  const registration = useNavigate();
+  const forgotpassword = useNavigate();
+  const homepage = useNavigate();
+  const [userdata, setUserData] = useState();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [alertmsg, setAlertmsg] = useState();
 
-  const login = useNavigate();
+  const userAllData = () => {
+    //Get Record - Detail View
+    axios
+      .get("https://investmentportal.herokuapp.com/getrecord")
+      .then(function (data) {
+        //console.log(data.data.data);
+        setUserData(data.data.data);
+        // localStorage.setItem("userinfo",JSON.stringify(data));
+        // setVisiable(true);
+      });
+  };
+
+  const userLogin = () => {
+    if (userdata) {
+      if (!email || !password) {
+        //console.log("plz fill the all fields");
+        setAlertmsg("plz fill the all fields");
+
+        // Adding new Messages
+        //message.warning("Please fill all the fields !");
+      } else {
+        for (let i = 0; i < userdata.length; i++) {
+          const DecodePass = Base64.decode(userdata[i]?.Password);
+          // console.log(userdata[i]?.Email)
+          // console.log(userdata[i]?.Password)
+          //console.log(DecodePass);
+          if (userdata[i]?.Email === email && DecodePass === password) {
+            if(userdata[i].UserStatus === "Approved"){
+              localStorage.setItem(
+                "userinfo",
+                JSON.stringify({
+                  id: userdata[i].ID,
+                  name: userdata[i].Name.display_value,
+                  email: userdata[i].Email,
+                  userstatus: userdata[i].UserStatus,
+                })
+              );
+              // console.log("");
+              // message.success("Successfully login!");
+              console.log("Successfully login!");
+              registration("/home");
+            }else if(userdata[i].UserStatus === "Pending"){
+              //message.success("Your request is pending...");
+              console.log("Your request is pending...");
+            }else{
+              //message.success("Please ask an admin to grant permission to this app.");
+              console.log("Please ask an admin to grant permission to this app.");
+            }
+            
+          } else {
+            setAlertmsg("");
+            // setAlertmsg(<Alert message="Incorrect Email and Password" type="warning" showIcon closable />)
+
+            //message.error("Incorrect Email and Password");
+          }
+        }
+      }
+    } else {
+      // console.log("Server problem. User not found try after sometimes");
+      // setAlertmsg("Server problem. User not found try after sometimes");
+   //   message.success("Server problem. User not found try after sometimes!");
+    }
+  };
+
+  const ForgotPassword = () => {
+    forgotpassword("/forgotpassword");
+  };
+
+
+  useEffect(() => {
+    const userInfo = JSON.parse(localStorage.getItem("userinfo"));
+    if (userInfo) {
+      homepage("/home");
+    }
+    userAllData();
+  }, []);
 
   return (
     <div>
@@ -39,7 +123,8 @@ const Login = () => {
                         class="form-control"
                         id="username"
                         aria-describedby="username"
-                        placeholder="User Name "
+                        placeholder="User Email "
+                        onChange={(e) => setEmail(e.target.value)}
                       />
                     </div>
                     <div class="form-group mt-3">
@@ -49,6 +134,7 @@ const Login = () => {
                         id="password"
                         aria-describedby="password"
                         placeholder="Password"
+                        onChange={(e) => setPassword(e.target.value)}
                       />
                     </div>
 
@@ -57,7 +143,7 @@ const Login = () => {
                         style={{ float: "left", color: "#00ADEE" }}
                         type="button"
                         className="btn btn-primary bg-white mt-2 border-0"
-                        onClick={() => login("/home")}
+                        onClick={userLogin}
                       >
                         Sign In
                       </button>
@@ -78,7 +164,7 @@ const Login = () => {
 
                   <div>
                     If you do not already have a User ID and password, please{" "}
-                    <a href="#" className="text-white">
+                    <a onClick={() => registration("/registration")} className="text-white">
                       register now
                     </a>
                     .
