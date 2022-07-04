@@ -2,6 +2,7 @@ import React from "react";
 import Footer from "../Sheard/Footer";
 import Menu from "../Sheard/Menu";
 import TopHeader from "../Sheard/TopHeader";
+import Pagination2 from "./Pagination2";
 import "./search.css";
 
 const Search = () => {
@@ -345,6 +346,10 @@ const Search = () => {
             id="pills-home"
             role="tabpanel"
             aria-labelledby="pills-home-tab"
+            style={{
+              padding : '0px 50px 50px 0px'
+
+            }}
           >
             <h3> Issuser Name </h3>
             <span>4419 Search Results</span>
@@ -379,12 +384,17 @@ const Search = () => {
                 </tr>
               </tbody>
             </table>
+            <Pagination2></Pagination2>
           </div>
           <div
             className="tab-pane fade text-white"
             id="pills-profile"
             role="tabpanel"
             aria-labelledby="pills-profile-tab"
+            style={{
+              padding : '0px 50px 50px 0px'
+
+            }}
           >
             <h3> Deal Name </h3>
             <span>4419 Search Results</span>
@@ -421,12 +431,18 @@ const Search = () => {
                 </tr>
               </tbody>
             </table>{" "}
+            <Pagination2></Pagination2>
+
           </div>
           <div
             className="tab-pane fade text-white"
             id="pills-contact"
             role="tabpanel"
             aria-labelledby="pills-contact-tab"
+            style={{
+              padding : '0px 50px 50px 0px'
+
+            }}
           >
             <h3> Financer Name </h3>
             <span>4419 Search Results</span>
@@ -464,6 +480,11 @@ const Search = () => {
                 </tr>
               </tbody>
             </table>
+        <Pagination2></Pagination2>
+
+            {/* Pagination Start  */}
+
+            {/* Pagination End  */}
           </div>
         </div>
       </section>
