@@ -10,7 +10,7 @@ export default function Home() {
   const [userinfo, setUserInfo] = useState();
   const [filedata,setFileData] = useState();
   const [documentname,setDocumentName] = useState();
-
+  const [documentdata, setDocumentData] = useState();
   const FileData = (e) => {
     console.log(e.target.files[0]);
     setFileData(e.target.files[0]);
@@ -49,6 +49,22 @@ export default function Home() {
     //   console.log(err.message);
     // })
      
+  }
+
+  const AllDocuments = () =>{
+    axios.post("http://localhost:5000/getalldocuments").then(function(data){
+      console.log(data);
+      console.log(data.data.data[0].Documents);
+      setDocumentData(data.data.data);
+    })
+  }
+
+  const AllDeals = () =>{
+    axios.post("http://localhost:5000/getalldeals").then(function(data){
+      console.log(data);
+      console.log(data.data.data[0].Documents);
+      setDocumentData(data.data.data);
+    })
   }
 
   useEffect(() => {
@@ -133,6 +149,10 @@ export default function Home() {
               <br />
               <button type="submit">Submit File</button>
               </form>
+
+              <button onClick={AllDocuments}>Get Documents</button>
+              <br/>
+              <button onClick={AllDeals}>Get Deals</button>
 
               </div>
             </section>
