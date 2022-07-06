@@ -1,11 +1,34 @@
-import React from "react";
+import React, { useState,useEffect } from "react";
 import Footer from "../Sheard/Footer";
 import Menu from "../Sheard/Menu";
 import TopHeader from "../Sheard/TopHeader";
 import Pagination2 from "./Pagination2";
 import "./search.css";
+import axios from "axios";
 
 const Search = () => {
+  const [dealsdata,setDealsData] = useState();
+  const [documentdata, setDocumentData] = useState();
+
+  const AllDeals = () =>{
+    axios.post("http://localhost:5000/getalldeals").then(function(data){
+      console.log(data.data.data);
+      setDealsData(data.data.data);
+      //console.log(data.data.data[0].Documents);
+      setDocumentData(data.data.data);
+    })
+  }
+
+  const ShowData = () =>{
+    console.log("deals data: ",dealsdata);
+  }
+
+  useEffect(()=>{
+    AllDeals();
+  },[]);
+
+
+
   return (
     <div>
       <TopHeader></TopHeader>
@@ -284,7 +307,8 @@ const Search = () => {
       {/* Advance Search Section End  */}
 
       {/* Start table of All content  */}
-
+      {/* <button onClick={AllDeals}>Get all deals</button>
+      <button onClick={ShowData}>Show data</button> */}
       <section
         className="container mt-5"
         style={{
@@ -352,7 +376,7 @@ const Search = () => {
             }}
           >
             <h3> Issuser Name </h3>
-            <span>4419 Search Results</span>
+            <span>{dealsdata?.length} Search Results</span>
 
             <table className="table text-white mt-3">
               <thead>
@@ -364,24 +388,19 @@ const Search = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row"> Name of Issuer </th>
+                {dealsdata?.map((data,index)=>(
+                  <tr>
+                  <th scope="row"> {data.Issuer_Name} </th>
                   <td>Other </td>
                   <td>1</td>
                   <td>
                     {" "}
                     <i className="bi bi-arrow-up-right-square"> </i>{" "}
                   </td>
-                </tr>
-                <tr>
-                  <th scope="row"> Name of Issuer </th>
-                  <td>Other </td>
-                  <td>1</td>
-                  <td>
-                    {" "}
-                    <i className="bi bi-arrow-up-right-square"> </i>{" "}
-                  </td>
-                </tr>
+                  </tr>
+                ))}
+                
+                
               </tbody>
             </table>
             <Pagination2></Pagination2>
@@ -397,7 +416,7 @@ const Search = () => {
             }}
           >
             <h3> Deal Name </h3>
-            <span>4419 Search Results</span>
+            <span>{dealsdata?.length} Search Results</span>
             <table className="table text-white mt-3">
               <thead>
                 <tr>
@@ -409,26 +428,19 @@ const Search = () => {
                 </tr>
               </thead>
               <tbody>
+              {dealsdata?.map((data,index)=>(
                 <tr>
-                  <th scope="row"> Name of Deal </th>
-                  <td>Name of Issuer </td>
-                  <td>Other </td>
-                  <td> Name Name </td>
-                  <td>
-                    {" "}
-                    <i className="bi bi-arrow-up-right-square"> </i>{" "}
-                  </td>
+                <th scope="row"> {data.DealName} </th>
+                <td>{data.Issuer_Name} </td>
+                <td>Other </td>
+                <td> {data.ContactId.display_value} </td>
+                <td>
+                  {" "}
+                  <i className="bi bi-arrow-up-right-square"> </i>{" "}
+                </td>
                 </tr>
-                <tr>
-                  <th scope="row"> Name of Deal </th>
-                  <td>Name of Issuer </td>
-                  <td>Other </td>
-                  <td> Name Name </td>
-                  <td>
-                    {" "}
-                    <i className="bi bi-arrow-up-right-square"> </i>{" "}
-                  </td>
-                </tr>
+              ))}
+                
               </tbody>
             </table>{" "}
             <Pagination2></Pagination2>
@@ -445,7 +457,7 @@ const Search = () => {
             }}
           >
             <h3> Financer Name </h3>
-            <span>4419 Search Results</span>
+            <span>{dealsdata?.length} Search Results</span>
 
             <table className="table text-white mt-3">
               <thead>
@@ -458,26 +470,19 @@ const Search = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row"> Name of Financer </th>
-                  <td>Name of Issuer </td>
+                {dealsdata?.map((data,index)=>(
+                  <tr>
+                  <th scope="row"> {data.Financer} </th>
+                  <td>{data.Issuer_Name}</td>
                   <td>Other </td>
-                  <td> Name Name </td>
+                  <td> {data.ContactId.display_value} </td>
                   <td>
                     {" "}
                     <i className="bi bi-arrow-up-right-square"> </i>{" "}
                   </td>
-                </tr>
-                <tr>
-                  <th scope="row"> Name of Financer </th>
-                  <td>Name of Issuer </td>
-                  <td>Other </td>
-                  <td> Name Name </td>
-                  <td>
-                    {" "}
-                    <i className="bi bi-arrow-up-right-square"> </i>{" "}
-                  </td>
-                </tr>
+                  </tr>
+                ))}
+                
               </tbody>
             </table>
         <Pagination2></Pagination2>
